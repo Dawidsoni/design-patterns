@@ -1,7 +1,14 @@
 package test;
 
 import design.patterns.abstractFactory.*;
+import design.patterns.bridge.Circle;
+import design.patterns.bridge.OptDrawingImpl;
+import design.patterns.bridge.SimpleDrawingImpl;
+import design.patterns.bridge.Square;
 import design.patterns.builder.*;
+import design.patterns.chainOfResponsibility.AbstractForm;
+import design.patterns.chainOfResponsibility.AlertForm;
+import design.patterns.chainOfResponsibility.SimpleForm;
 import design.patterns.composite.*;
 import design.patterns.decorator.*;
 import design.patterns.proxy.*;
@@ -66,10 +73,27 @@ public class MainTest {
         System.out.println("Singleton val: " + s1.getVal());
     }
 
+    @Test
+    public void chainOfResponsibilityTest() {
+        AbstractForm form1 = new AlertForm("Alert form help");
+        AbstractForm form2 = new SimpleForm();
+        AbstractForm form3 = new SimpleForm();
+        form2.addForm(form3);
+        form1.addForm(form2);
+        System.out.println(form3.getHelp());
+    }
+
+    @Test
+    public void bridgeTest() {
+        Square square = new Square(new OptDrawingImpl());
+        Circle circle = new Circle(new SimpleDrawingImpl());
+        square.draw();
+        circle.draw();
+    }
+
+
     @After
     public void printNewLines() {
-        System.out.println();
-        System.out.println();
         System.out.println();
     }
 }
