@@ -11,8 +11,12 @@ import design.patterns.chainOfResponsibility.AlertForm;
 import design.patterns.chainOfResponsibility.SimpleForm;
 import design.patterns.composite.*;
 import design.patterns.decorator.*;
+import design.patterns.mediator.FormMediator;
 import design.patterns.proxy.*;
 import design.patterns.singleton.*;
+import design.patterns.strategy.ComputeDec;
+import design.patterns.strategy.Counter;
+import design.patterns.strategy.ICompute;
 import org.junit.After;
 import org.junit.Test;
 
@@ -89,6 +93,23 @@ public class MainTest {
         Circle circle = new Circle(new SimpleDrawingImpl());
         square.draw();
         circle.draw();
+    }
+
+    @Test
+    public void strategyTest() {
+        Counter counter = new Counter(new ComputeDec());
+        counter.nextVal();
+        System.out.println("Decrement strategy - counted val: " + counter.getVal());
+    }
+
+    @Test
+    public void mediatorTest() {
+        FormMediator mediator = new FormMediator();
+        mediator.getTextbox().setText("abc");
+        mediator.getTextbox().addText("def");
+        mediator.getResetButton().click();
+        mediator.getTextbox().addText("abc");
+        mediator.getConfirmButton().click();
     }
 
 
