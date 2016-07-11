@@ -10,12 +10,12 @@ import design.patterns.decorator.*;
 import design.patterns.facade.*;
 import design.patterns.factoryMethod.*;
 import design.patterns.mediator.*;
-import design.patterns.observer.ListBox;
-import design.patterns.observer.MenuItem;
-import design.patterns.observer.Mouse;
+import design.patterns.observer.*;
 import design.patterns.proxy.*;
 import design.patterns.singleton.*;
+import design.patterns.state.*;
 import design.patterns.strategy.*;
+import design.patterns.templateMethod.*;
 import org.junit.After;
 import org.junit.Test;
 
@@ -137,6 +137,19 @@ public class MainTest {
         mouse.addListener(listBox);
         mouse.addListener(menuItem);
         mouse.mouseChange();
+    }
+
+    @Test
+    public void templateMethodTest() {
+        ExtGameA game = new ExtGameA();
+        game.createGame();
+    }
+
+    @Test
+    public void stateTest() {
+        Calculator calculator = new Calculator(new PlusState());
+        calculator.setState(new MinusState());
+        System.out.println("Calculated value: " + calculator.compute(4, 3));
     }
 
     @After
