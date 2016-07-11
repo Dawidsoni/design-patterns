@@ -1,25 +1,21 @@
 package test;
 
 import design.patterns.abstractFactory.*;
-import design.patterns.adapter.MusicPlayerAdapter;
-import design.patterns.adapter.OptMusicPlayer;
-import design.patterns.bridge.Circle;
-import design.patterns.bridge.OptDrawingImpl;
-import design.patterns.bridge.SimpleDrawingImpl;
-import design.patterns.bridge.Square;
+import design.patterns.adapter.*;
+import design.patterns.bridge.*;
 import design.patterns.builder.*;
-import design.patterns.chainOfResponsibility.AbstractForm;
-import design.patterns.chainOfResponsibility.AlertForm;
-import design.patterns.chainOfResponsibility.SimpleForm;
+import design.patterns.chainOfResponsibility.*;
 import design.patterns.composite.*;
 import design.patterns.decorator.*;
-import design.patterns.facade.ModelFacade;
-import design.patterns.mediator.FormMediator;
+import design.patterns.facade.*;
+import design.patterns.factoryMethod.*;
+import design.patterns.mediator.*;
+import design.patterns.observer.ListBox;
+import design.patterns.observer.MenuItem;
+import design.patterns.observer.Mouse;
 import design.patterns.proxy.*;
 import design.patterns.singleton.*;
-import design.patterns.strategy.ComputeDec;
-import design.patterns.strategy.Counter;
-import design.patterns.strategy.ICompute;
+import design.patterns.strategy.*;
 import org.junit.After;
 import org.junit.Test;
 
@@ -125,6 +121,22 @@ public class MainTest {
     public void facadeTest() {
         ModelFacade model = new ModelFacade();
         model.operationA();
+    }
+
+    @Test
+    public void factoryMethodTest() {
+        SecureRoom room = new SecureRoom();
+        room.createDoor().open();
+    }
+
+    @Test
+    public void observerTest() {
+        Mouse mouse = new Mouse();
+        ListBox listBox = new ListBox();
+        MenuItem menuItem = new MenuItem();
+        mouse.addListener(listBox);
+        mouse.addListener(menuItem);
+        mouse.mouseChange();
     }
 
     @After
