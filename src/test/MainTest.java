@@ -1,6 +1,8 @@
 package test;
 
 import design.patterns.abstractFactory.*;
+import design.patterns.adapter.MusicPlayerAdapter;
+import design.patterns.adapter.OptMusicPlayer;
 import design.patterns.bridge.Circle;
 import design.patterns.bridge.OptDrawingImpl;
 import design.patterns.bridge.SimpleDrawingImpl;
@@ -11,6 +13,7 @@ import design.patterns.chainOfResponsibility.AlertForm;
 import design.patterns.chainOfResponsibility.SimpleForm;
 import design.patterns.composite.*;
 import design.patterns.decorator.*;
+import design.patterns.facade.ModelFacade;
 import design.patterns.mediator.FormMediator;
 import design.patterns.proxy.*;
 import design.patterns.singleton.*;
@@ -112,6 +115,17 @@ public class MainTest {
         mediator.getConfirmButton().click();
     }
 
+    @Test
+    public void adapterTest() {
+        MusicPlayerAdapter adapter = new MusicPlayerAdapter(new OptMusicPlayer());
+        adapter.play("mp3");
+    }
+
+    @Test
+    public void facadeTest() {
+        ModelFacade model = new ModelFacade();
+        model.operationA();
+    }
 
     @After
     public void printNewLines() {
