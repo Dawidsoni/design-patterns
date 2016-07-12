@@ -5,23 +5,20 @@ import design.patterns.adapter.*;
 import design.patterns.bridge.*;
 import design.patterns.builder.*;
 import design.patterns.chainOfResponsibility.*;
+import design.patterns.command.*;
 import design.patterns.composite.*;
 import design.patterns.decorator.*;
 import design.patterns.facade.*;
 import design.patterns.factoryMethod.*;
 import design.patterns.mediator.*;
-import design.patterns.memento.PersonMemento;
-import design.patterns.memento.PersonOriginator;
+import design.patterns.memento.*;
 import design.patterns.observer.*;
 import design.patterns.proxy.*;
 import design.patterns.singleton.*;
 import design.patterns.state.*;
 import design.patterns.strategy.*;
 import design.patterns.templateMethod.*;
-import design.patterns.visitor.IClient;
-import design.patterns.visitor.IDispatcher;
-import design.patterns.visitor.SilverClient;
-import design.patterns.visitor.SimpleDispatcher;
+import design.patterns.visitor.*;
 import org.junit.After;
 import org.junit.Test;
 
@@ -173,6 +170,17 @@ public class MainTest {
         originator.setState("C", "D");
         originator.restoreState(memento);
         System.out.println("First name: " + originator.getState().getFirstName());
+    }
+
+    @Test
+    public void commandTest() {
+        ComputerUser user = new ComputerUser();
+        user.compute('+', 7);
+        user.compute('-', 3);
+        user.compute('+', 10);
+        user.undo();
+        user.undo();
+        System.out.println("Computed value: " + user.getValue());
     }
 
     @After
