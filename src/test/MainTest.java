@@ -10,12 +10,18 @@ import design.patterns.decorator.*;
 import design.patterns.facade.*;
 import design.patterns.factoryMethod.*;
 import design.patterns.mediator.*;
+import design.patterns.memento.PersonMemento;
+import design.patterns.memento.PersonOriginator;
 import design.patterns.observer.*;
 import design.patterns.proxy.*;
 import design.patterns.singleton.*;
 import design.patterns.state.*;
 import design.patterns.strategy.*;
 import design.patterns.templateMethod.*;
+import design.patterns.visitor.IClient;
+import design.patterns.visitor.IDispatcher;
+import design.patterns.visitor.SilverClient;
+import design.patterns.visitor.SimpleDispatcher;
 import org.junit.After;
 import org.junit.Test;
 
@@ -150,6 +156,23 @@ public class MainTest {
         Calculator calculator = new Calculator(new PlusState());
         calculator.setState(new MinusState());
         System.out.println("Calculated value: " + calculator.compute(4, 3));
+    }
+
+    @Test
+    public void visitorTest() {
+        IDispatcher dispatcher = new SimpleDispatcher();
+        IClient client = new SilverClient();
+        client.accept(dispatcher);
+    }
+
+    @Test
+    public void mementoTest() {
+        PersonOriginator originator = new PersonOriginator();
+        originator.setState("A", "B");
+        PersonMemento memento = originator.getState();
+        originator.setState("C", "D");
+        originator.restoreState(memento);
+        System.out.println("First name: " + originator.getState().getFirstName());
     }
 
     @After
